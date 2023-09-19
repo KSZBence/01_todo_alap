@@ -8,7 +8,7 @@ class Megjelenit{
         tarolo.append("<table class='table'></table>")
         for (let index = 0; index < lista.length; index++) {
             let elem = lista[index]
-            new MegjelenitSor(elem, $(".table"))
+            new MegjelenitSor(elem, $(".table"), index)
         }
     }
 }

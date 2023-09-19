@@ -2,28 +2,40 @@
 
 class MegjelenitSor{
     #obj
+    #index
     szuloelem
-    constructor(obj, szuloelem){
+    constructor(obj, szuloelem, index){
         this.#obj = obj
+        this.#index = index
         this.szuloelem = szuloelem;
         this.#sor()
         this.sorElem = this.szuloelem.children("tr:last-child")
         this.keszelem = this.sorElem.children("td").children(".pipa")
         this.nincskeszelem = this.sorElem.children("td").children(".twitter")
-        this.torleskeszelem = this.sorElem.children("td").children(".torles")
+        this.torleselem = this.sorElem.children("td").children(".torles")
 
-        this.keszelem.on("click",() => {
+        if (this.#obj.kesz) {
             this.sorElem.css("background-color", "lightgreen")
             this.keszelem.css("filter", "grayscale()")
             this.nincskeszelem.html("❌")
-            this.#esemenyTrigger("kesz")
+        }
+
+        this.keszelem.on("click",() => {
+            this.#esemenyTrigger("done")
         })
 
         this.nincskeszelem.on("click",() => {
             this.sorElem.css("background-color", "white")
             this.keszelem.css("filter", "none")
             this.nincskeszelem.html("✖")
+            this.#esemenyTrigger("iksz")
         })
+
+        this.torleselem.on("click",() => {
+            this.#esemenyTrigger("torol")
+        })
+
+        
     }
 
     #sor(){
@@ -35,8 +47,9 @@ class MegjelenitSor{
         this.szuloelem.append(szoveg)
     }
     #esemenyTrigger(esemenyneve) {
-        const esemeny = new CostumEvent(esemenyneve,{detail:this})
+        const esemeny = new CustomEvent(esemenyneve,{detail:this.#index})
         window.dispatchEvent(esemeny);
     }
 }
 export default MegjelenitSor
+
