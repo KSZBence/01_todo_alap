@@ -35,6 +35,10 @@ class MegjelenitSor{
             this.#esemenyTrigger("torol")
         })
 
+        this.hozzaadaselem.on("click",() => {
+            this.#esemenyTrigger("hozzaadas")
+        })
+
         
     }
 

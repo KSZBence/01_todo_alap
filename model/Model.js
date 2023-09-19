@@ -18,6 +18,10 @@ class Model{
         this.#list[index].kesz = value
         console.log(this.#list[index].kesz);
     }
+
+    hozzaadas(value){
+        this.#list.push(value)
+    }
 }
 
 export default Model

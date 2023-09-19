@@ -6,6 +6,7 @@ class Controller{
         const TAROLO = $(".tarolo")
         const MODEL = new Model();
         new Megjelenit(MODEL.getList(),TAROLO)
+        new UrlapView
     
         $(window).on("torol", function(event){
             console.log(event.detail);
@@ -27,10 +28,18 @@ class Controller{
         })
 
         $(window).on("kesz", function(event){
-            MODEL.setKesz.
+            MODEL.setKesz
             TAROLO.empty();
             new Megjelenit(MODEL.getList(),TAROLO)
         })
+        
+        $(window).on("hozzaadas", function(event){
+
+            MODEL.hozzaadas(event.detail)
+            TAROLO.empty();
+            new Megjelenit(MODEL.getList(),TAROLO)
+        })
+
     }
 }
 
